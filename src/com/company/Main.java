@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        Scanner sf = new Scanner(new File("/Users/bb222/IdeaProjects/AP-Friday-PairProgramming/src/com/company/scores2.txt"));
+    public static void main(String[] args) throws IOException, NullPointerException {
+        Scanner sf = new Scanner(new File("scores2.txt"));
         String txt[] = new String[2000];
 
         int line = 0;
@@ -15,25 +15,22 @@ public class Main {
             maxIndx++;
             txt[maxIndx] = sf.nextLine();
         }
+
+        Read[] ourDoc = new Read[maxIndx];
+
+        for (int i = 1; i < ourDoc.length; i++){
+            ourDoc[i] = new Read(txt[i]);
+        }
+
         sf.close();
-        System.out.println(txt[2]);
 
-        double[] averages = new double[line];
-        line = 0;
+        double totalAverages = 0;
+        for(int i = 1; i < ourDoc.length;i++){
+            totalAverages += ourDoc[i].averages;
 
-        String stuff [] = new String [txt.length];
-        String x = "";
-
-        for(int i = 0; i < txt.length;i++){
-            x = txt[i];
-            stuff [i] = x.split("\t");
         }
-
-        while (line < txt.length) {
-            for (int j = 0; j <= 20; j++) {
-                //19/20/21 averages
-
-            }
-        }
+        System.out.println(ourDoc[4].averages);
+       // totalAverages = totalAverages / ourDoc[].getTotalAverage();
+        System.out.println("The average SAT score in the city of New York is: " + totalAverages);
     }
 }
